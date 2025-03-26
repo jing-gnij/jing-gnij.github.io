@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/styles.css">
+	<title>Hogwarts Review House</title>
+	<link rel="icon" href="/icon.png" type="image/png">
+</head>
+<body>
+	<header>
+		<h1>Hogwarts Review House</h1>
+		<nav>
+			<a href="/index.html">Home</a>
+			<a href="/contact_us.html">Contact Us</a>
+			<a href="/about.html">About</a>
+		</nav>
+	</header>
+
+	<main>
+		<article class="book-intro">
+			<header>
+				<h2>Harry Potter and the Philosopher's Stone</h2>
+			</header>
+
+			<figure>
+				<img src="/images/1.webp" alt="Harry Potter and the Philosopher's Stone">
+			</figure>
+				
+			<p>Harry Potter and the Sorcerer's Stone is the first book in the Harry Potter series. It’s about a boy named Harry Potter who has lived with his mean aunt, uncle, and cousin after his parents died. On his eleventh birthday, Harry finds out he’s a wizard when a giant named Hagrid tells him he’s been accepted to Hogwarts, a school for magic.</p>
+
+			<p>At Hogwarts, Harry makes friends like Ron and Hermione and learns all about magic. He also finds out about a dark wizard named Voldemort, who was connected to the death of his parents. Throughout the year, Harry discovers secrets about his past and tries to stop someone from stealing the magical Sorcerer’s Stone, which gives people eternal life.</p>
+
+			<p>The book is full of adventure, magic, and mystery and starts Harry's exciting journey in the wizarding world.</p>
+		</article>
+
+		<section id="book-comments">
+			<header>
+				<h2>Comments from readers</h2>
+			</header>
+
+			<article>
+				<header>
+					<h3>Magical and Fun World</h3>
+					<p>Fake reader one</p>
+				</header>
+
+				<p>The world of magic in Harry Potter and the Sorcerer's Stone is amazing and so much fun to imagine. Hogwarts is full of interesting characters, magical creatures, and strange spells that make the story exciting. The book does a great job of showing how different life is for wizards compared to regular people. Readers get to experience what it's like to be a student at a magical school and learn alongside Harry.</p>
+
+				<p>What makes it even better is how the author slowly introduces readers to this magical world. It feels like you’re discovering everything at the same time as Harry, from flying on broomsticks to learning about magic potions. The magic isn’t just cool; it also makes the story feel special and creates a sense of wonder that makes you want to keep reading.</p>
+			</article>
+
+			<article>
+				<header>
+					<h3>Great Characters and Friendship</h3>
+					<p>Fake reader two</p>
+				</header>
+
+				<p>One of the best parts of the book is Harry’s friendship with Ron and Hermione. Even though they’re all very different, they come together and help each other out through difficult situations. They show how important it is to trust and rely on your friends, no matter what. The bond between them is strong, and it's clear that their friendship will continue to be important in the future books.</p>
+
+				<p>Each character has their own strengths, and they all bring something unique to the group. Ron is loyal and funny, Hermione is smart and brave, and Harry is determined and kind-hearted. Together, they make a great team. It’s not just about magic – it’s also about how they support each other through tough times and take on challenges together.</p>
+			</article>
+
+			<article>
+				<header>
+					<h3>Mysterious and Exciting Plot</h3>
+					<p>Fake reader three</p>
+				</header>
+
+				<p>The mystery of the Sorcerer’s Stone is what makes the story so exciting. As Harry and his friends try to figure out who is trying to steal it, the reader gets pulled into the mystery too. There are a lot of twists and turns, and just when you think you know what’s going to happen next, something surprising occurs. The whole time, you’re wondering if Harry and his friends will be able to stop the bad guys.</p>
+
+				<p>What’s also great is how the book mixes in themes of bravery, love, and the importance of making the right choices. Harry could easily run away from danger, but he chooses to stand up for what’s right. It’s not just about defeating evil; it’s about growing up, learning what’s important, and finding the courage to do what’s necessary. The story is more than just magic – it’s about becoming a better person.</p>
+			</article>
+		</section>
+
+
+		<button id="add-comments-btn">New Comments</button>
+
+		<section id="modal">
+			<header>
+				<h2>New Comments</h2>
+			</header>
+
+			<form id="new-comments-form">
+			    <label for="subject">Subject</label>
+			    <input type="text" id="subject" name="subject" required>
+
+			    <label for="name">Name</label>
+			    <input type="text" id="name" name="name" required>
+			    
+			    <label for="email">Email address (optional)</label>
+			    <input type="email" id="email" name="email">
+			    
+			    <label for="newcomments">New Comments</label>
+			    <textarea id="newcomments" name="newcomments" required></textarea>
+			    
+			    <button type="reset">Reset</button>
+			    <button type="submit">Submit</button>
+			    <button type="button" id="close-modal-btn">Close</button>
+			</form>
+		</section>
+	</main>
+
+	<footer><p>Host on GitHub Pages, 2025.</p></footer>
+
+	<script>
+		const openModalBtn = document.getElementById('add-comments-btn');
+		const closeModalBtn = document.getElementById('close-modal-btn');
+		const modal = document.getElementById('modal');
+
+		openModalBtn.onclick = function() { modal.style.display = 'block'; }
+
+		closeModalBtn.onclick = function () { modal.style.display = 'none'; }
+
+		const form = document.getElementById("new-comments-form");
+
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			const formData = new FormData(this);
+			const subject = formData.get('subject');
+			const name = formData.get('name');
+			const text = formData.get('newcomments');
+
+			const article = document.createElement('article');
+			const header = document.createElement('header');
+			header.innerHTML = `<h3>${subject}</h3><p>${name}</p>`
+			article.appendChild(header);
+			formData.get('newcomments').split('\n').forEach((para, index) => {
+				let p = document.createElement('p');
+				p.textContent = para;
+				article.appendChild(p);
+			})
+
+			const section = document.getElementById('book-comments');
+			section.appendChild(article);
+
+			form.reset();
+			modal.style.display = 'none';
+		})
+	</script>
+</body>
+</html>
