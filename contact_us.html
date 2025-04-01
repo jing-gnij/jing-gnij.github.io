@@ -1,47 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/styles.css">
-	<title>Hogwarts Review House</title>
-	<link rel="icon" href="icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Hogwarts Review House</title>
+    <link rel="icon" href="icon.png" type="image/png">
 </head>
 <body>
-	<header>
-		<h1>Hogwarts Review House</h1>
-		<nav>
-			<a href="index.html">Home</a>
-			<a href="contact_us.html">Contact Us</a>
-			<a href="about.html">About</a>
-		</nav>
-	</header>
+    <header>
+        <h1>Hogwarts Review House</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact_us.html">Contact Us</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
 
-	<main>
-		<section>
-			<header>
-				<h2>Contact Us</h2>
-			</header>
-			
-			<form action="mailto:comments@hogwartsreviewhouse.com" method="post" enctype="text/plain">
-			    <label for="firstname">First name</label>
-			    <input type="text" id="firstname" name="firstname" required>
+    <main>
+        <section>
+            <header>
+                <h2>Contact Us</h2>
+            </header>
+            
+            <form id="contact-form" action="mailto:comments@hogwartsreviewhouse.com" method="post" enctype="text/plain">
+                <label for="firstname">First name</label>
+                <input type="text" id="firstname" name="firstname" required>
 
-			    <label for="lastname">Last name</label>
-			    <input type="text" id="lastname" name="lastname" required>
-			    
-			    <label for="email">Email address</label>
-			    <input type="email" id="email" name="email" required>
-			    
-			    <label for="comments">Comments</label>
-			    <textarea id="comments" name="comments" required></textarea>
-			    
-			    <button type="reset">Reset</button>
-			    <button type="submit">Submit</button>
-			</form>
-		</section>
-	</main>
+                <label for="lastname">Last name</label>
+                <input type="text" id="lastname" name="lastname" required>
+                
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" required></textarea>
+                
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
 
-	<footer><p>Host on GitHub Pages, 2025.</p></footer>
+    <footer><p>Host on GitHub Pages, 2025.</p></footer>
+
+    <script type="text/javascript">
+        //Standardize the behavior of mailto across different browsers in different environments (development/production).
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(form);
+            let emailBody = "";
+
+            // Format form data into the email body
+            formData.forEach((value, filed) => {
+                emailBody += filed + "=" + value + "\n";
+            });
+
+            // Open the email client with the pre-filled email
+            let mailtoLink = "mailto:comments@hogwartsreviewhouse.com?body=" + encodeURIComponent(emailBody);
+            window.location.href = mailtoLink;
+        });
+    </script>
 </body>
 </html>
